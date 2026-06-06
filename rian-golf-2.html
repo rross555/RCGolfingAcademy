@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rian — Golf Coaching</title>
+
+<!-- ============================================================
+     LEAD DELIVERY: WhatsApp only. One constant, edit here.
+     Number is +1 (905) 929-5158
+     ============================================================ -->
+<script>const WA_NUMBER = "19059295158";</script>
+
+<!-- ⚠ PRE-LAUNCH: hero photo is hot-linked from Unsplash.
+     Swap for Rian's real swing photo (or download the Unsplash
+     file locally) before going live. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0d150f;
+    --bg2:#11201700;
+    --panel:#12211a;
+    --panel-2:#16271e;
+    --line:rgba(244,239,225,.12);
+    --cream:#f4efe1;
+    --muted:#a9b4a4;
+    --gold:#e8b04b;
+    --gold-deep:#c8902f;
+    --green:#4f9d5c;
+    --green-deep:#2f6b3a;
+    --radius:18px;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* grain overlay */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .display{font-family:"Fraunces",Georgia,serif;line-height:1.02;letter-spacing:-.01em}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(to bottom,rgba(13,21,15,.85),rgba(13,21,15,0));
+    transition:background .3s;
+  }
+  .brand{font-family:"Fraunces",serif;font-size:21px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+  .nav-cta{
+    font-size:14px;font-weight:600;padding:10px 18px;border-radius:100px;
+    border:1px solid var(--line);color:var(--cream);transition:.25s;
+  }
+  .nav-cta:hover{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+
+  /* HERO */
+  header{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(.9) contrast(1.05)}
+  /* gradient fallback if the photo fails */
+  .hero-fallback{
+    position:absolute;inset:0;z-index:0;display:none;
+    background:
+      radial-gradient(120% 90% at 75% 15%, rgba(232,176,75,.35), transparent 55%),
+      radial-gradient(130% 100% at 20% 90%, rgba(47,107,58,.55), transparent 60%),
+      linear-gradient(160deg,#16271e,#0d150f 70%);
+  }
+  .hero-fallback.show{display:block}
+  .hero-scrim{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top,rgba(13,21,15,.96) 8%,rgba(13,21,15,.5) 45%,rgba(13,21,15,.15) 100%);}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:64px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:22px;
+    opacity:0;transform:translateY(16px);animation:rise .8s .1s forwards;
+  }
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+  h1{
+    font-size:clamp(3rem,9.5vw,7.4rem);font-weight:400;max-width:14ch;
+    opacity:0;transform:translateY(22px);animation:rise .9s .22s forwards;
+  }
+  h1 em{font-style:italic;color:var(--gold)}
+  .hero-sub{
+    margin-top:22px;max-width:46ch;font-size:clamp(1rem,2.2vw,1.22rem);color:var(--muted);
+    opacity:0;transform:translateY(20px);animation:rise .9s .36s forwards;
+  }
+  .hero-actions{
+    margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;
+    opacity:0;transform:translateY(20px);animation:rise .9s .5s forwards;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;
+    padding:15px 26px;border-radius:100px;transition:transform .2s,box-shadow .25s,background .25s;cursor:pointer;border:none;
+  }
+  .btn-gold{background:var(--gold);color:#1a1206;box-shadow:0 10px 30px rgba(232,176,75,.28)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(232,176,75,.4)}
+  .btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--cream)}
+  .hero-stats{
+    margin-top:46px;display:flex;flex-wrap:wrap;gap:38px;border-top:1px solid var(--line);padding-top:26px;max-width:680px;
+    opacity:0;transform:translateY(20px);animation:rise .9s .64s forwards;
+  }
+  .hero-stats div span{display:block;font-family:"Fraunces",serif;font-size:2rem;color:var(--cream)}
+  .hero-stats div small{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* SECTION SHELL */
+  section{padding:96px 0;position:relative}
+  .sec-head{max-width:620px;margin-bottom:54px}
+  .sec-tag{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:400}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:1.05rem}
+
+  /* WORK ON — cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 26px;transition:.3s;position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--gold);transition:width .35s}
+  .card:hover{transform:translateY(-5px);background:var(--panel-2);border-color:rgba(232,176,75,.4)}
+  .card:hover::before{width:100%}
+  .card .ic{font-size:26px;margin-bottom:16px;display:block}
+  .card h3{font-family:"Fraunces",serif;font-size:1.4rem;font-weight:500;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:.96rem}
+
+  /* PRICING */
+  .pricing{background:linear-gradient(180deg,#0d150f,#10201600 0),radial-gradient(80% 60% at 80% 0%,rgba(47,107,58,.18),transparent 60%)}
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .plan{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;gap:18px;transition:.3s
+  }
+  .plan:hover{transform:translateY(-5px);border-color:rgba(244,239,225,.3)}
+  .plan.feat{
+    background:linear-gradient(165deg,#1a2c20,#11201700);border-color:rgba(232,176,75,.5);
+    box-shadow:0 24px 60px rgba(0,0,0,.4);position:relative;
+  }
+  .plan.feat .badge{
+    position:absolute;top:18px;right:18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    background:var(--gold);color:#1a1206;font-weight:700;padding:5px 11px;border-radius:100px
+  }
+  .plan h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.5rem}
+  .plan .from{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+  .plan .price{font-family:"Fraunces",serif;font-size:3rem;line-height:1}
+  .plan .price small{font-size:1rem;color:var(--muted);font-family:"Hanken Grotesk"}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px;flex:1}
+  .plan li{display:flex;gap:10px;color:var(--muted);font-size:.96rem}
+  .plan li::before{content:"⛳";font-size:.85rem}
+  .plan .btn{width:100%;justify-content:center;margin-top:6px}
+
+  /* FORM */
+  .enquiry{background:radial-gradient(90% 70% at 15% 20%,rgba(47,107,58,.16),transparent 55%)}
+  .form-shell{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  .form-copy h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:400;font-family:"Fraunces",serif}
+  .form-copy p{color:var(--muted);margin-top:16px}
+  .form-copy .reassure{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  .reassure div{display:flex;gap:12px;align-items:center;font-size:.95rem}
+  .reassure .tick{width:26px;height:26px;border-radius:50%;background:rgba(79,157,92,.2);color:var(--green);display:grid;place-items:center;flex:none;font-size:13px;font-weight:700}
+
+  form.box{
+    background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:34px;
+    display:flex;flex-direction:column;gap:20px;
+  }
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .field input,.field select,.field textarea{
+    background:#0d150f;border:1px solid var(--line);border-radius:12px;padding:14px 15px;
+    color:var(--cream);font-family:inherit;font-size:15px;transition:.2s;width:100%;
+  }
+  .field textarea{resize:vertical;min-height:84px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,176,75,.15)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23a9b4a4' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{
+    border:1px solid var(--line);border-radius:100px;padding:9px 15px;font-size:14px;cursor:pointer;
+    color:var(--muted);transition:.2s;user-select:none;background:#0d150f;
+  }
+  .chip:hover{border-color:var(--cream);color:var(--cream)}
+  .chip.on{background:var(--gold);color:#1a1206;border-color:var(--gold);font-weight:600}
+  form .btn{justify-content:center;margin-top:4px}
+  .form-note{font-size:12.5px;color:var(--muted);text-align:center}
+  .sent{display:none;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:20px 0}
+  .sent.show{display:flex}
+  .sent .big{font-family:"Fraunces",serif;font-size:1.6rem}
+  .sent .ring{width:58px;height:58px;border-radius:50%;background:rgba(79,157,92,.18);color:var(--green);display:grid;place-items:center;font-size:26px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted)}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center}
+  .foot .brand{color:var(--cream)}
+  .foot small{font-size:13px}
+
+  @media(max-width:820px){
+    .form-shell{grid-template-columns:1fr;gap:34px}
+    nav{padding:14px 18px}
+    .hero-stats{gap:26px}
+    .hero-stats div span{font-size:1.6rem}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand"><span class="dot"></span> Rian <span style="color:var(--muted);font-weight:400;font-family:'Hanken Grotesk';font-size:14px">· Golf Coaching</span></div>
+  <a href="#enquiry" class="nav-cta">Book a session</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header>
+  <div class="hero-media">
+    <img
+      src="https://images.unsplash.com/photo-1708906439816-7c06e4bf822c?q=80&w=1600&auto=format&fit=crop"
+      alt="Golfer mid-swing"
+      onerror="document.querySelector('.hero-fallback').classList.add('show');this.style.display='none';" />
+  </div>
+  <div class="hero-fallback"></div>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow">PGA-style coaching · Belfast &amp; beyond</span>
+      <h1 class="display">Find your <em>swing.</em><br>Drop your handicap.</h1>
+      <p class="hero-sub">One-to-one coaching built around your game — whether you're picking up a club for the first time or chasing single figures. Real changes you'll feel by the next round.</p>
+      <div class="hero-actions">
+        <a href="#enquiry" class="btn btn-gold">Enquire now →</a>
+        <a href="#pricing" class="btn btn-ghost">See pricing</a>
+      </div>
+      <div class="hero-stats">
+        <div><span>From $99</span><small>Per session</small></div>
+        <div><span>1-on-1</span><small>Every lesson</small></div>
+        <div><span>All levels</span><small>Beginner → scratch</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== WHAT WE WORK ON ===================== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">The work</span>
+      <h2 class="display">Coaching that fits your game</h2>
+      <p>No two players are the same. Tell me where you're at and we build the session around it.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><span class="ic">🏌️</span><h3>Full swing</h3><p>Rebuild or refine — tempo, plane and contact that holds up under pressure.</p></div>
+      <div class="card"><span class="ic">🎯</span><h3>Driving &amp; distance</h3><p>More speed, more fairways. Find the line off the tee and trust it.</p></div>
+      <div class="card"><span class="ic">⛳</span><h3>Short game</h3><p>Chips, pitches and bunkers — the strokes that actually move your card.</p></div>
+      <div class="card"><span class="ic">🥏</span><h3>Putting</h3><p>Speed control, start line and reads. Stop three-putting for good.</p></div>
+      <div class="card"><span class="ic">🧠</span><h3>On-course strategy</h3><p>Play your way round, not the hero shot. Lower scores without new ball-striking.</p></div>
+      <div class="card"><span class="ic">🌱</span><h3>Total beginners</h3><p>Never held a club? Start here. Grip, posture and your first solid strikes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Pricing</span>
+      <h2 class="display">Simple rates. Real progress.</h2>
+      <p>Block bookings save you money and keep momentum between rounds.</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan">
+        <span class="from">From</span>
+        <div class="price">$99<small>/ session</small></div>
+        <h3>Single Session</h3>
+        <ul>
+          <li>60 minutes 1-on-1</li>
+          <li>Full swing or short-game focus</li>
+          <li>Video review of your swing</li>
+          <li>One drill to take away</li>
+        </ul>
+        <a href="#enquiry" class="btn btn-ghost">Book one →</a>
+      </div>
+
+      <div class="plan feat">
+        <span class="badge">Most popular</span>
+        <span class="from">From</span>
+        <div class="price">$449<small>/ 5 sessions</small></div>
+        <h3>5-Session Block</h3>
+        <ul>
+          <li>Five 60-min sessions</li>
+          <li>Save vs single rate</li>
+          <li>Structured plan across the block</li>
+          <li>WhatsApp check-ins between lessons</li>
+        </ul>
+        <a href="#enquiry" class="btn btn-gold">Get started →</a>
+      </div>
+
+      <div class="plan">
+        <span class="from">From</span>
+        <div class="price">$199<small>/ month</small></div>
+        <h3>Performance Plan</h3>
+        <ul>
+          <li>Ongoing monthly coaching</li>
+          <li>Personalised practice schedule</li>
+          <li>On-course playing lesson</li>
+          <li>Priority booking</li>
+        </ul>
+        <a href="#enquiry" class="btn btn-ghost">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENQUIRY ===================== -->
+<section class="enquiry" id="enquiry">
+  <div class="wrap">
+    <div class="form-shell">
+      <div class="form-copy">
+        <span class="sec-tag">Enquire</span>
+        <h2>Let's talk about your game.</h2>
+        <p>Fill this in and it lands straight in Rian's WhatsApp. He'll come back with availability and the right starting point for you.</p>
+        <div class="reassure">
+          <div><span class="tick">✓</span> No payment now — just a chat first</div>
+          <div><span class="tick">✓</span> Goes direct to WhatsApp, replies within the day</div>
+          <div><span class="tick">✓</span> Beginners genuinely welcome</div>
+        </div>
+      </div>
+
+      <form class="box" id="enquiryForm" onsubmit="return false;">
+        <div class="field">
+          <label>Your name</label>
+          <input id="f_name" type="text" placeholder="e.g. Jordan McKee" />
+        </div>
+
+        <div class="field">
+          <label>Current level</label>
+          <select id="f_level">
+            <option value="">Select…</option>
+            <option>Complete beginner</option>
+            <option>Improver (played a bit)</option>
+            <option>Intermediate</option>
+            <option>Advanced / low handicap</option>
+          </select>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label>Handicap</label>
+            <select id="f_hcp">
+              <option value="">Select…</option>
+              <option>No handicap yet</option>
+              <option>28+</option>
+              <option>19–27</option>
+              <option>10–18</option>
+              <option>Single figures (0–9)</option>
+              <option>Scratch / +</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Rounds per month</label>
+            <select id="f_rounds">
+              <option value="">Select…</option>
+              <option>Not yet — just starting</option>
+              <option>1–2 eighteens</option>
+              <option>3–5 eighteens</option>
+              <option>6+ eighteens</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What do you most want to work on?</label>
+          <div class="chips" id="focusChips">
+            <span class="chip" data-v="Full swing">Full swing</span>
+            <span class="chip" data-v="Driving">Driving</span>
+            <span class="chip" data-v="Irons / approach">Irons</span>
+            <span class="chip" data-v="Short game">Short game</span>
+            <span class="chip" data-v="Putting">Putting</span>
+            <span class="chip" data-v="On-course strategy">On-course</span>
+            <span class="chip" data-v="Just starting out">Just starting</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Anything else? (optional)</label>
+          <textarea id="f_notes" placeholder="Goals, preferred days, where you play…"></textarea>
+        </div>
+
+        <button class="btn btn-gold" id="sendBtn" onclick="sendEnquiry()">Send to Rian on WhatsApp →</button>
+        <p class="form-note">Opens WhatsApp with your enquiry pre-filled. Nothing is charged.</p>
+
+        <div class="sent" id="sentMsg">
+          <div class="ring">✓</div>
+          <div class="big">Opening WhatsApp…</div>
+          <p style="color:var(--muted);font-size:.95rem">If it didn't open, <a id="waLink" style="color:var(--gold);text-decoration:underline" href="#">tap here</a> to send your enquiry.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand"><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)"></span> Rian · Golf Coaching</div>
+    <small>Belfast &amp; surrounding clubs · Enquiries via WhatsApp</small>
+  </div>
+</footer>
+
+<script>
+  // sticky nav bg on scroll
+  addEventListener("scroll",()=>{document.getElementById("nav").style.background =
+    scrollY>40 ? "rgba(13,21,15,.92)" : "linear-gradient(to bottom,rgba(13,21,15,.85),rgba(13,21,15,0))";});
+
+  // focus chips (multi-select)
+  document.querySelectorAll("#focusChips .chip").forEach(c=>{
+    c.addEventListener("click",()=>c.classList.toggle("on"));
+  });
+
+  function sendEnquiry(){
+    const name   = document.getElementById("f_name").value.trim();
+    const level  = document.getElementById("f_level").value;
+    const hcp    = document.getElementById("f_hcp").value;
+    const rounds = document.getElementById("f_rounds").value;
+    const notes  = document.getElementById("f_notes").value.trim();
+    const focus  = [...document.querySelectorAll("#focusChips .chip.on")].map(c=>c.dataset.v);
+
+    if(!name){ alert("Pop your name in first 🙂"); return; }
+
+    let msg = "⛳ New golf coaching enquiry\n\n";
+    msg += "Name: " + name + "\n";
+    if(level)  msg += "Level: " + level + "\n";
+    if(hcp)    msg += "Handicap: " + hcp + "\n";
+    if(rounds) msg += "Rounds/month: " + rounds + "\n";
+    if(focus.length) msg += "Wants to work on: " + focus.join(", ") + "\n";
+    if(notes)  msg += "Notes: " + notes + "\n";
+    msg += "\nSent from the website.";
+
+    const url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
+
+    document.getElementById("waLink").href = url;
+    document.getElementById("sentMsg").classList.add("show");
+    document.getElementById("sendBtn").style.display = "none";
+    window.open(url,"_blank");
+  }
+</script>
+</body>
+</html>
